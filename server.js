@@ -39,7 +39,7 @@ const app = express();
 const PORT = process.env.PORT;
 app.use(morgan('dev')); 
 app.use(cors()); 
-app.use(express.static('public')); folder
+app.use(express.static('public')); 
 app.use(express.json()); 
 
 

@@ -11,7 +11,7 @@ function normalize(html) {
 }
 
 // add the custom assertion to QUnit
-QUnit.assert.htmlEqual = function (actual, expected) {
+QUnit.assert.htmlEqual = function(actual, expected) {
     const normalizedActual = normalize(actual);
     const normalizedExpected = normalize(expected);
     QUnit.assert.equal(normalizedActual, normalizedExpected);
