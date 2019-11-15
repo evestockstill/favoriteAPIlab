@@ -8,7 +8,7 @@ const morgan = require('morgan');
 const client = require('./lib/client');
 
 // Initiate database connection
-client.connect();
+
 
 // Auth
 const ensureAuth = require('./lib/auth/ensure-auth');
@@ -18,7 +18,7 @@ const authRoutes = createAuthRoutes({
         return client.query(`
 
         `,
-            [eail]
+        []
         ).then(result => result.rows[0]);
     },
     insertUser(user, hash) {
@@ -26,7 +26,7 @@ const authRoutes = createAuthRoutes({
         return client.query(`
 
         `,
-            []
+        []
         ).then(result => result.rows[0]);
     }
 });
@@ -44,6 +44,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api', ensureAuth);
 
 // API Routes
+
+
 
 // Start the server
 app.listen(PORT, () => {
