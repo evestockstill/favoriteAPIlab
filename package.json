@@ -8,7 +8,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "lint": "eslint .",
+    "create-tables": "node data/create-tables.js",
+    "drop-tables": "node data/drop-tables.js",
+    "recreate-tables": "npm run drop-tables && npm run create-tables"
   },
   "repository": {
     "type": "git",
