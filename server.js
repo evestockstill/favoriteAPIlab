@@ -14,20 +14,24 @@ const client = require('./lib/client');
 const ensureAuth = require('./lib/auth/ensure-auth');
 const createAuthRoutes = require('./lib/auth/create-auth-routes');
 const authRoutes = createAuthRoutes({
-    selectUser(email) {
-        return client.query(`
-
-        `,
-        []
-        ).then(result => result.rows[0]);
+    async selectUser(email) {
+        const result = await client.query(`
+            SELECT id, email, hash, display_name as "displayName"
+            FROM users
+            WHERE email = $1
+        `, [email]
+        ); 
+        return result.rows[0];
     },
-    insertUser(user, hash) {
+    async insertUser(user, hash) {
 
-        return client.query(`
-
+        const result = await client.query(`
+            INSERT into users (email, hash, display_name)
+            VALUES ($1, $2, $3)
+            RETURNING id, email, display_name as "displayName";
         `,
-        []
-        ).then(result => result.rows[0]);
+        [user.email, hash, user.displayName]);
+        return result.rows[0];
     }
 });
 
