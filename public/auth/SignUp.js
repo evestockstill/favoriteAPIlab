@@ -7,7 +7,7 @@ class SignUp extends Component {
 
         form.addEventListener('submit', event => {
             event.preventDefault();
-
+            debugger
             const formData = new FormData(form);
 
             const user = {
